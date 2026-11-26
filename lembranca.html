@@ -168,7 +168,7 @@
           <div class="w-full mt-4 flex flex-wrap items-center justify-center gap-2.5">
             <label
               for="photoInput"
-              class="cursor-pointer inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#B39264] hover:bg-[#937347] text-white text-sm font-medium shadow-sm transition-colors"
+              class="cursor-pointer inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#B39264] hover:bg-[#937347] text-white text-sm font-medium shadow-sm transition-colors"
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
@@ -176,28 +176,6 @@
               <span id="uploadBtnLabel">Escolher ou Tirar Foto</span>
             </label>
             <input id="photoInput" type="file" accept="image/*" class="hidden" />
-
-            <button
-              id="btnDownload"
-              type="button"
-              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#3B2618] hover:bg-[#2A1B11] text-white text-sm font-medium shadow-sm transition-colors"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
-              Baixar Lembrancinha
-            </button>
-
-            <button
-              id="btnShare"
-              type="button"
-              class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#F5EDE2] hover:bg-[#E9DAC5] text-[#3B2618] border border-[#DFCBB0] text-sm font-medium transition-colors"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-              </svg>
-              Compartilhar
-            </button>
           </div>
           <p id="photoStatus" class="text-xs text-[#8E765E] mt-2.5 text-center">
             Usando imagem de demonstração — toque em <strong>Escolher ou Tirar Foto</strong> para colocar sua foto com o Arthur.
@@ -375,46 +353,70 @@
           </div>
         </div>
 
-        <!-- 4. Álbum do Arthur (Google Fotos) -->
+        <!-- 4. Salvar e Enviar para o Álbum -->
         <div
           id="albumCard"
           class="bg-[#FFFDFA] border border-[#E5D7C3] rounded-2xl p-5 shadow-sm transition-all"
         >
           <h2 class="text-sm font-semibold uppercase tracking-wider text-[#937347] mb-2">
-            4. Álbum do Arthur
+            4. Finalizar e Enviar ao Álbum
           </h2>
           <p class="text-xs text-[#78604A] leading-relaxed mb-3.5">
-            Depois de baixar sua lembrancinha, adicione a foto no álbum compartilhado para que possamos guardar e rever todos os registros juntos.
+            Envie sua lembrancinha pronta direto para o Álbum do Arthur com 1 toque, ou baixe e compartilhe no seu celular.
           </p>
-          <div class="flex flex-col sm:flex-row gap-2.5">
-            <button
-              id="btnDownloadForAlbum"
-              type="button"
-              class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-[#DFCBB0] bg-[#FAF6F0] hover:bg-[#EFE4D4] text-[#3B2618] text-sm font-medium transition-colors"
-            >
-              <svg class="w-4 h-4 text-[#937347]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
-              <span>1. Baixar Foto</span>
-            </button>
-            <a
-              id="btnAddToAlbum"
-              href="https://photos.app.goo.gl/fqgKKbSWSZQvoS7k8"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex-[1.3] inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#B39264] hover:bg-[#937347] text-white text-sm font-medium shadow-sm transition-colors"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="5" width="18" height="14" rx="2" />
-                <circle cx="8.5" cy="10.5" r="1.5" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 15l-4.5-4.5a1.5 1.5 0 00-2.12 0L7 18" />
-              </svg>
-              <span>2. Adicionar ao Álbum</span>
-            </a>
+          <div class="mb-3">
+            <label for="inputGuestName" class="block text-xs text-[#78604A] mb-1">Seu nome (opcional)</label>
+            <input
+              id="inputGuestName"
+              type="text"
+              maxlength="40"
+              placeholder="Ex: Tia Ana, Padrinho João..."
+              class="w-full px-3 py-2 text-sm rounded-xl border border-[#E5D7C3] bg-[#FAF6F0] text-[#3B2618] focus:outline-none focus:border-[#B39264]"
+            />
           </div>
-          <p class="text-[11px] text-[#8E765E] mt-2.5 text-center">
-            Abre o Álbum do Arthur no Google Fotos para você enviar sua lembrancinha.
-          </p>
+
+          <div class="space-y-2.5">
+            <button
+              id="btnSendToAlbum"
+              type="button"
+              class="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-[#B39264] hover:bg-[#937347] text-white text-sm font-semibold shadow-sm transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              <svg id="albumIconUpload" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 16V4m0 0l-4 4m4-4l4 4M4 16.5A3.5 3.5 0 007.5 20h9a3.5 3.5 0 003.5-3.5" />
+              </svg>
+              <svg id="albumIconSpinner" class="hidden w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3"></circle>
+                <path class="opacity-90" fill="currentColor" d="M4 12a8 8 0 018-8v3a5 5 0 00-5 5H4z"></path>
+              </svg>
+              <span id="albumBtnLabel">Enviar para o Álbum do Arthur</span>
+            </button>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <button
+                id="btnDownload"
+                type="button"
+                class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#3B2618] hover:bg-[#2A1B11] text-white text-sm font-medium shadow-sm transition-colors"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                <span>Baixar Lembrancinha</span>
+              </button>
+
+              <button
+                id="btnShare"
+                type="button"
+                class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#F5EDE2] hover:bg-[#E9DAC5] text-[#3B2618] border border-[#DFCBB0] text-sm font-medium transition-colors"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                </svg>
+                <span>Compartilhar</span>
+              </button>
+            </div>
+          </div>
+
+          <p id="albumUploadStatus" class="hidden text-xs mt-2.5 text-center font-medium"></p>
         </div>
       </aside>
     </main>
@@ -1089,24 +1091,92 @@
         showToast('Lembrancinha salva em alta resolução!');
       }
 
-      const btnDownloadForAlbum = document.getElementById('btnDownloadForAlbum');
+      const ALBUM_UPLOAD_URL = 'https://script.google.com/macros/s/AKfycbx8iSIqvlmLDLB9ZPlaVIYKq9ypafNR9gIOBoWpTaGCb_id-vWSzSu3VlWMxc8r6-Cw/exec';
       const albumCard = document.getElementById('albumCard');
+      const inputGuestName = document.getElementById('inputGuestName');
+      const btnSendToAlbum = document.getElementById('btnSendToAlbum');
+      const albumIconUpload = document.getElementById('albumIconUpload');
+      const albumIconSpinner = document.getElementById('albumIconSpinner');
+      const albumBtnLabel = document.getElementById('albumBtnLabel');
+      const albumUploadStatus = document.getElementById('albumUploadStatus');
+      let isUploadingToAlbum = false;
 
-      function handleDownloadAndGuide() {
+      btnDownload.addEventListener('click', () => {
         triggerDownload();
-        showToast('Lembrancinha salva! Agora toque em "Adicionar ao Álbum".');
-        if (albumCard) {
-          albumCard.classList.add('ring-2', 'ring-[#B39264]/50', 'border-[#B39264]');
-          setTimeout(() => {
-            albumCard.classList.remove('ring-2', 'ring-[#B39264]/50', 'border-[#B39264]');
-          }, 3500);
+        showToast('Lembrancinha salva! Você também pode enviar direto para o Álbum do Arthur.');
+      });
+
+      async function sendPhotoToAlbum() {
+        if (isUploadingToAlbum) return;
+
+        if (!state.userImage || state.isSample) {
+          showToast('Escolha ou tire sua foto primeiro para enviar ao álbum.');
+          if (photoInput) photoInput.click();
+          return;
+        }
+
+        isUploadingToAlbum = true;
+        if (btnSendToAlbum) btnSendToAlbum.disabled = true;
+        if (albumIconUpload) albumIconUpload.classList.add('hidden');
+        if (albumIconSpinner) albumIconSpinner.classList.remove('hidden');
+        if (albumBtnLabel) albumBtnLabel.textContent = 'Enviando para o álbum...';
+        if (albumUploadStatus) {
+          albumUploadStatus.className = 'text-xs mt-2.5 text-center font-medium text-[#78604A]';
+          albumUploadStatus.textContent = 'Enviando sua lembrancinha, aguarde um instante...';
+        }
+
+        try {
+          render();
+          const imageDataUrl = canvas.toDataURL('image/jpeg', 0.92);
+          const payload = {
+            image: imageDataUrl,
+            guestName: inputGuestName ? inputGuestName.value.trim() : '',
+            format: state.format
+          };
+
+          const response = await fetch(ALBUM_UPLOAD_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(payload)
+          });
+
+          if (!response.ok) {
+            throw new Error('HTTP ' + response.status);
+          }
+
+          const result = await response.json();
+          if (!result || !result.ok) {
+            throw new Error((result && result.error) || 'Falha ao salvar foto.');
+          }
+
+          showToast('Foto enviada com sucesso para o Álbum do Arthur!');
+          if (albumBtnLabel) albumBtnLabel.textContent = 'Enviada ao Álbum! Enviar outra';
+          if (albumUploadStatus) {
+            albumUploadStatus.className = 'text-xs mt-2.5 text-center font-medium text-[#2E6F40]';
+            albumUploadStatus.textContent = 'Foto adicionada com sucesso ao Álbum do Arthur!';
+          }
+          if (albumCard) {
+            albumCard.classList.add('ring-2', 'ring-[#2E6F40]/40', 'border-[#2E6F40]/60');
+            setTimeout(() => {
+              albumCard.classList.remove('ring-2', 'ring-[#2E6F40]/40', 'border-[#2E6F40]/60');
+            }, 4000);
+          }
+        } catch (err) {
+          showToast('Não foi possível enviar agora. Verifique a internet e tente novamente.');
+          if (albumBtnLabel) albumBtnLabel.textContent = 'Tentar enviar novamente';
+          if (albumUploadStatus) {
+            albumUploadStatus.className = 'text-xs mt-2.5 text-center font-medium text-[#9B2C2C]';
+            albumUploadStatus.textContent = 'Ops! Não foi possível enviar agora. Tente novamente em instantes.';
+          }
+        } finally {
+          isUploadingToAlbum = false;
+          if (btnSendToAlbum) btnSendToAlbum.disabled = false;
+          if (albumIconUpload) albumIconUpload.classList.remove('hidden');
+          if (albumIconSpinner) albumIconSpinner.classList.add('hidden');
         }
       }
 
-      btnDownload.addEventListener('click', handleDownloadAndGuide);
-      if (btnDownloadForAlbum) {
-        btnDownloadForAlbum.addEventListener('click', handleDownloadAndGuide);
-      }
+      if (btnSendToAlbum) btnSendToAlbum.addEventListener('click', sendPhotoToAlbum);
 
       btnShare.addEventListener('click', async () => {
         render();

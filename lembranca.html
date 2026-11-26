@@ -374,6 +374,48 @@
             </div>
           </div>
         </div>
+
+        <!-- 4. Álbum do Arthur (Google Fotos) -->
+        <div
+          id="albumCard"
+          class="bg-[#FFFDFA] border border-[#E5D7C3] rounded-2xl p-5 shadow-sm transition-all"
+        >
+          <h2 class="text-sm font-semibold uppercase tracking-wider text-[#937347] mb-2">
+            4. Álbum do Arthur
+          </h2>
+          <p class="text-xs text-[#78604A] leading-relaxed mb-3.5">
+            Depois de baixar sua lembrancinha, adicione a foto no álbum compartilhado para que possamos guardar e rever todos os registros juntos.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-2.5">
+            <button
+              id="btnDownloadForAlbum"
+              type="button"
+              class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-[#DFCBB0] bg-[#FAF6F0] hover:bg-[#EFE4D4] text-[#3B2618] text-sm font-medium transition-colors"
+            >
+              <svg class="w-4 h-4 text-[#937347]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              <span>1. Baixar Foto</span>
+            </button>
+            <a
+              id="btnAddToAlbum"
+              href="https://photos.app.goo.gl/fqgKKbSWSZQvoS7k8"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex-[1.3] inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#B39264] hover:bg-[#937347] text-white text-sm font-medium shadow-sm transition-colors"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="2" />
+                <circle cx="8.5" cy="10.5" r="1.5" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 15l-4.5-4.5a1.5 1.5 0 00-2.12 0L7 18" />
+              </svg>
+              <span>2. Adicionar ao Álbum</span>
+            </a>
+          </div>
+          <p class="text-[11px] text-[#8E765E] mt-2.5 text-center">
+            Abre o Álbum do Arthur no Google Fotos para você enviar sua lembrancinha.
+          </p>
+        </div>
       </aside>
     </main>
 
@@ -1047,7 +1089,24 @@
         showToast('Lembrancinha salva em alta resolução!');
       }
 
-      btnDownload.addEventListener('click', triggerDownload);
+      const btnDownloadForAlbum = document.getElementById('btnDownloadForAlbum');
+      const albumCard = document.getElementById('albumCard');
+
+      function handleDownloadAndGuide() {
+        triggerDownload();
+        showToast('Lembrancinha salva! Agora toque em "Adicionar ao Álbum".');
+        if (albumCard) {
+          albumCard.classList.add('ring-2', 'ring-[#B39264]/50', 'border-[#B39264]');
+          setTimeout(() => {
+            albumCard.classList.remove('ring-2', 'ring-[#B39264]/50', 'border-[#B39264]');
+          }, 3500);
+        }
+      }
+
+      btnDownload.addEventListener('click', handleDownloadAndGuide);
+      if (btnDownloadForAlbum) {
+        btnDownloadForAlbum.addEventListener('click', handleDownloadAndGuide);
+      }
 
       btnShare.addEventListener('click', async () => {
         render();

@@ -730,12 +730,22 @@
         context.restore();
       }
 
-      function render() {
+      const EXPORT_SCALE = 2; // 2160 px de largura (alta definição para revelação/impressão)
+
+      function renderToCanvas(targetCanvas, scale = 1) {
         const cfg = FORMATS[state.format];
-        if (canvas.width !== cfg.w || canvas.height !== cfg.h) {
-          canvas.width = cfg.w;
-          canvas.height = cfg.h;
+        const targetW = cfg.w * scale;
+        const targetH = cfg.h * scale;
+        if (targetCanvas.width !== targetW || targetCanvas.height !== targetH) {
+          targetCanvas.width = targetW;
+          targetCanvas.height = targetH;
         }
+
+        const ctx = targetCanvas.getContext('2d');
+        ctx.save();
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.scale(scale, scale);
 
         const w = cfg.w;
         const h = cfg.h;
@@ -884,6 +894,17 @@
             '#B39264'
           );
         }
+        ctx.restore();
+      }
+
+      function render() {
+        renderToCanvas(canvas, 1);
+      }
+
+      function createHighResCanvas() {
+        const exportCanvas = document.createElement('canvas');
+        renderToCanvas(exportCanvas, EXPORT_SCALE);
+        return exportCanvas;
       }
 
       function updateZoomUI() {
@@ -1101,10 +1122,11 @@
       // Download & Share
       function triggerDownload() {
         render();
-        const fileName = `lembranca-batizado-arthur-${state.format}.png`;
+        const hiResCanvas = createHighResCanvas();
+        const fileName = `lembranca-batizado-arthur-${state.format}-hd.png`;
         const link = document.createElement('a');
         link.download = fileName;
-        link.href = canvas.toDataURL('image/png');
+        link.href = hiResCanvas.toDataURL('image/png');
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -1147,7 +1169,8 @@
 
         try {
           render();
-          const imageDataUrl = canvas.toDataURL('image/jpeg', 0.92);
+          const hiResCanvas = createHighResCanvas();
+          const imageDataUrl = hiResCanvas.toDataURL('image/jpeg', 0.98);
           const payload = {
             image: imageDataUrl,
             guestName: inputGuestName ? inputGuestName.value.trim() : '',
@@ -1200,9 +1223,10 @@
 
       btnShare.addEventListener('click', async () => {
         render();
-        const fileName = `lembranca-batizado-arthur-${state.format}.png`;
+        const hiResCanvas = createHighResCanvas();
+        const fileName = `lembranca-batizado-arthur-${state.format}-hd.png`;
         try {
-          const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
+          const blob = await new Promise((resolve) => hiResCanvas.toBlob(resolve, 'image/png'));
           const file = new File([blob], fileName, { type: 'image/png' });
           if (navigator.canShare && navigator.canShare({ files: [file] })) {
             await navigator.share({

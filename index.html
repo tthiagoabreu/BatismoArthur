@@ -1145,7 +1145,7 @@
 
     // === CONFIRMAÇÃO DE PRESENÇA (RSVP -> Google Sheets via Apps Script) ===
     (function initRsvp() {
-      const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx8iSIqvlmLDLB9ZPlaVIYKq9ypafNR9gIOBoWpTaGCb_id-vWSzSu3VlWMxc8r6-Cw/exec';
+      const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwzvogbUEkAqvZdSN3_yVVTjnThkSKve0Yl5fvp_c2RTdqxzHCqugcHA_8CP0g4vS7T/exec';
       const form = document.getElementById('rsvp-form');
       if (!form) return;
 
@@ -1270,7 +1270,8 @@
             showToast('Confirmação enviada com sucesso!');
           }
         } catch (err) {
-          errorMsg.textContent = 'Não foi possível enviar agora. Verifique sua conexão e tente novamente.';
+          const detail = err && err.message ? ` (${err.message})` : '';
+          errorMsg.textContent = `Não foi possível enviar agora${detail}. Tente novamente.`;
           errorMsg.classList.remove('hidden');
         } finally {
           rsvpState.submitting = false;

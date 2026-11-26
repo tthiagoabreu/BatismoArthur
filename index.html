@@ -123,11 +123,11 @@
       </div>
 
       <p class="mt-4 text-sm sm:text-base text-taupe max-w-xl mx-auto leading-relaxed">
-        Com muita alegria, preparamos este espaço com a localização do restaurante e o cardápio completo do nosso almoço especial.
+        Com muita alegria, preparamos este espaço com a localização do restaurante, o cardápio completo do nosso almoço e uma página especial para criar sua lembrança com foto.
       </p>
 
       <!-- Primary Quick Actions -->
-      <div class="mt-6 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
+      <div class="mt-6 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center gap-3">
         <a
           href="https://www.google.com/maps/search/?api=1&query=Scamboo+Rural+Franca+SP&query_place_id=ChIJLRvNihalsJQR7ANscibQtoU"
           target="_blank"
@@ -137,6 +137,14 @@
           <i data-lucide="map-pin" class="w-5 h-5 shrink-0"></i>
           <span>Abrir Scamboo Rural no Google Maps</span>
           <i data-lucide="external-link" class="w-4 h-4 shrink-0 opacity-85"></i>
+        </a>
+
+        <a
+          href="https://tthiagoabreu.github.io/BatismoArthur/lembranca.html"
+          class="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-parchment hover:bg-gold/20 text-espresso border border-gold/45 font-semibold text-sm sm:text-base shadow-card transition-colors"
+        >
+          <i data-lucide="camera" class="w-4 h-4 text-gold-dark shrink-0"></i>
+          <span>Criar Lembrança com Foto</span>
         </a>
 
         <a
@@ -445,8 +453,38 @@
       </div>
     </section>
 
+    <!-- LEMBRANÇA DO BATIZADO -->
+    <section id="lembranca" aria-labelledby="titulo-lembranca" class="mt-10">
+      <div class="bg-gradient-to-br from-white via-ivory to-parchment/70 rounded-2xl border-2 border-gold/35 p-5 sm:p-6 shadow-soft flex flex-col sm:flex-row items-center justify-between gap-5">
+        <div class="flex items-start gap-4 text-left">
+          <div class="w-12 h-12 rounded-2xl bg-gold/15 border border-gold/30 flex items-center justify-center shrink-0 text-gold-dark">
+            <i data-lucide="camera" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <span class="inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider text-gold-dark">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+              Recordação Especial
+            </span>
+            <h2 id="titulo-lembranca" class="font-serif text-2xl sm:text-3xl font-bold text-espresso leading-tight mt-0.5">
+              Lembrança do Batizado
+            </h2>
+            <p class="text-sm text-taupe mt-1 leading-relaxed">
+              Tire ou escolha uma foto do momento, personalize com a moldura oficial do batismo do Arthur e salve ou compartilhe com a família.
+            </p>
+          </div>
+        </div>
+        <a
+          href="https://tthiagoabreu.github.io/BatismoArthur/lembranca.html"
+          class="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gold hover:bg-gold-dark text-white font-semibold text-sm shadow-soft transition-colors"
+        >
+          <i data-lucide="image-plus" class="w-4 h-4 shrink-0"></i>
+          <span>Criar minha lembrança</span>
+        </a>
+      </div>
+    </section>
+
     <!-- Bottom CTA Banner -->
-    <section class="mt-10 bg-white rounded-2xl border border-borderwarm p-6 text-center shadow-soft">
+    <section class="mt-6 bg-white rounded-2xl border border-borderwarm p-6 text-center shadow-soft">
       <p class="font-script text-3xl text-gold-dark">Esperamos por você!</p>
       <p class="text-sm text-taupe mt-1 max-w-md mx-auto">
         Precisa traçar a rota agora? Clique abaixo para abrir o Restaurante Scamboo Rural direto no Google Maps.

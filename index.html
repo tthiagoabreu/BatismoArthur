@@ -129,6 +129,14 @@
       <!-- Primary Quick Actions -->
       <div class="mt-6 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center gap-3">
         <a
+          href="#rsvp"
+          class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-espresso hover:bg-espresso/90 text-white font-semibold text-sm sm:text-base shadow-soft transition-colors"
+        >
+          <i data-lucide="calendar-check-2" class="w-5 h-5 text-gold-light shrink-0"></i>
+          <span>Confirmar Presença</span>
+        </a>
+
+        <a
           href="https://www.google.com/maps/search/?api=1&query=Scamboo+Rural+Franca+SP&query_place_id=ChIJLRvNihalsJQR7ANscibQtoU"
           target="_blank"
           rel="noopener noreferrer"
@@ -279,6 +287,214 @@
     </section>
 
     <!-- VALORES DO ALMOÇO + SIMULADOR -->
+    <!-- CONFIRMAÇÃO DE PRESENÇA (RSVP) -->
+    <section id="rsvp" aria-labelledby="titulo-rsvp" class="mb-10">
+      <div class="flex items-center gap-2.5 mb-4">
+        <span class="h-px flex-1 bg-borderwarm"></span>
+        <h2 id="titulo-rsvp" class="font-serif text-2xl sm:text-3xl font-bold text-espresso tracking-wide px-2">
+          Confirmação de Presença
+        </h2>
+        <span class="h-px flex-1 bg-borderwarm"></span>
+      </div>
+
+      <div class="bg-white rounded-2xl border-2 border-gold/30 p-5 sm:p-6 shadow-soft">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-5 pb-4 border-b border-borderwarm/70">
+          <div>
+            <p class="text-sm text-taupe leading-relaxed">
+              Confirme sua presença para organizarmos o almoço com carinho.
+            </p>
+          </div>
+          <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-parchment border border-gold/35 text-xs font-semibold text-gold-dark shrink-0">
+            <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+            <span>Confirmar até 02/12/2026</span>
+          </span>
+        </div>
+
+        <form id="rsvp-form" class="space-y-5" novalidate>
+          <!-- Nome -->
+          <div>
+            <label for="rsvp-name" class="block text-xs font-semibold uppercase tracking-wider text-gold-dark mb-1.5">
+              Seu nome completo (ou família) *
+            </label>
+            <input
+              id="rsvp-name"
+              name="name"
+              type="text"
+              required
+              maxlength="80"
+              placeholder="Ex: João Silva e família"
+              class="w-full px-4 py-3 rounded-xl border border-borderwarm bg-ivory/70 text-espresso text-sm focus:outline-none focus:border-gold focus:bg-white transition-colors"
+            />
+          </div>
+
+          <!-- Presença -->
+          <div>
+            <span class="block text-xs font-semibold uppercase tracking-wider text-gold-dark mb-2">
+              Você vai comparecer?
+            </span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <button
+                type="button"
+                id="rsvp-btn-yes"
+                data-attending="Sim"
+                aria-pressed="true"
+                class="rsvp-attend-btn flex items-center justify-center gap-2 px-4 py-3 rounded-xl border-2 border-gold bg-parchment text-espresso font-semibold text-sm transition-all"
+              >
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-gold-dark"></i>
+                <span>Sim, estarei lá!</span>
+              </button>
+              <button
+                type="button"
+                id="rsvp-btn-no"
+                data-attending="Não"
+                aria-pressed="false"
+                class="rsvp-attend-btn flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-borderwarm bg-white hover:bg-ivory text-taupe font-medium text-sm transition-all"
+              >
+                <i data-lucide="x-circle" class="w-4 h-4 text-taupe/70"></i>
+                <span>Infelizmente não poderei ir</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Quantidade de convidados -->
+          <div id="rsvp-counts-wrapper" class="space-y-3 pt-1">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-wider text-gold-dark">
+                Quantas pessoas vão com você?
+              </span>
+              <span id="rsvp-total-badge" class="text-xs font-semibold text-espresso bg-parchment px-3 py-1 rounded-full border border-borderwarm">
+                Total: 1 pessoa
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <!-- Adultos -->
+              <div class="bg-ivory/80 border border-borderwarm rounded-xl p-3.5 flex items-center justify-between">
+                <div>
+                  <p class="text-sm font-semibold text-espresso">Adultos</p>
+                  <p class="text-[11px] text-taupe">12+ anos · R$ 89,90</p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button
+                    type="button"
+                    data-rsvp-step="adults"
+                    data-delta="-1"
+                    aria-label="Diminuir adultos"
+                    class="w-8 h-8 rounded-lg border border-borderwarm bg-white hover:bg-parchment text-espresso font-bold flex items-center justify-center transition-colors"
+                  >−</button>
+                  <span id="rsvp-adults" class="w-6 text-center font-semibold text-espresso text-sm">1</span>
+                  <button
+                    type="button"
+                    data-rsvp-step="adults"
+                    data-delta="1"
+                    aria-label="Aumentar adultos"
+                    class="w-8 h-8 rounded-lg border border-borderwarm bg-white hover:bg-parchment text-espresso font-bold flex items-center justify-center transition-colors"
+                  >+</button>
+                </div>
+              </div>
+
+              <!-- Crianças 8 a 11 -->
+              <div class="bg-ivory/80 border border-borderwarm rounded-xl p-3.5 flex items-center justify-between">
+                <div>
+                  <p class="text-sm font-semibold text-espresso">8 a 11 anos</p>
+                  <p class="text-[11px] text-taupe">Meia · R$ 44,95</p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button
+                    type="button"
+                    data-rsvp-step="kidsHalf"
+                    data-delta="-1"
+                    aria-label="Diminuir crianças de 8 a 11 anos"
+                    class="w-8 h-8 rounded-lg border border-borderwarm bg-white hover:bg-parchment text-espresso font-bold flex items-center justify-center transition-colors"
+                  >−</button>
+                  <span id="rsvp-kidsHalf" class="w-6 text-center font-semibold text-espresso text-sm">0</span>
+                  <button
+                    type="button"
+                    data-rsvp-step="kidsHalf"
+                    data-delta="1"
+                    aria-label="Aumentar crianças de 8 a 11 anos"
+                    class="w-8 h-8 rounded-lg border border-borderwarm bg-white hover:bg-parchment text-espresso font-bold flex items-center justify-center transition-colors"
+                  >+</button>
+                </div>
+              </div>
+
+              <!-- Crianças até 7 -->
+              <div class="bg-ivory/80 border border-borderwarm rounded-xl p-3.5 flex items-center justify-between">
+                <div>
+                  <p class="text-sm font-semibold text-espresso">Até 7 anos</p>
+                  <p class="text-[11px] text-taupe">Não pagam</p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button
+                    type="button"
+                    data-rsvp-step="kidsFree"
+                    data-delta="-1"
+                    aria-label="Diminuir crianças até 7 anos"
+                    class="w-8 h-8 rounded-lg border border-borderwarm bg-white hover:bg-parchment text-espresso font-bold flex items-center justify-center transition-colors"
+                  >−</button>
+                  <span id="rsvp-kidsFree" class="w-6 text-center font-semibold text-espresso text-sm">0</span>
+                  <button
+                    type="button"
+                    data-rsvp-step="kidsFree"
+                    data-delta="1"
+                    aria-label="Aumentar crianças até 7 anos"
+                    class="w-8 h-8 rounded-lg border border-borderwarm bg-white hover:bg-parchment text-espresso font-bold flex items-center justify-center transition-colors"
+                  >+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Observações -->
+          <div>
+            <label for="rsvp-notes" class="block text-xs font-semibold uppercase tracking-wider text-gold-dark mb-1.5">
+              Observação ou recado para o Arthur (opcional)
+            </label>
+            <textarea
+              id="rsvp-notes"
+              name="notes"
+              rows="2"
+              maxlength="240"
+              placeholder="Ex: Nomes dos acompanhantes, recado carinhoso..."
+              class="w-full px-4 py-2.5 rounded-xl border border-borderwarm bg-ivory/70 text-espresso text-sm focus:outline-none focus:border-gold focus:bg-white transition-colors resize-none"
+            ></textarea>
+          </div>
+
+          <!-- Submit -->
+          <div class="pt-1">
+            <button
+              id="rsvp-submit-btn"
+              type="submit"
+              class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gold hover:bg-gold-dark text-white font-semibold text-sm sm:text-base shadow-soft transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              <i id="rsvp-icon-send" data-lucide="send" class="w-4 h-4"></i>
+              <span id="rsvp-submit-label">Confirmar Presença</span>
+            </button>
+            <p id="rsvp-error-msg" class="hidden text-xs text-red-700 font-medium text-center mt-2.5"></p>
+          </div>
+        </form>
+
+        <!-- Estado de confirmação enviada -->
+        <div id="rsvp-success-box" class="hidden text-center py-4 space-y-3">
+          <div class="w-12 h-12 mx-auto rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700">
+            <i data-lucide="check" class="w-6 h-6"></i>
+          </div>
+          <h3 id="rsvp-success-title" class="font-serif text-2xl font-bold text-espresso">
+            Presença confirmada!
+          </h3>
+          <p id="rsvp-success-detail" class="text-sm text-taupe max-w-md mx-auto leading-relaxed"></p>
+          <button
+            type="button"
+            id="rsvp-new-btn"
+            class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl border border-borderwarm bg-ivory hover:bg-parchment text-xs font-semibold text-espresso transition-colors"
+          >
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            <span>Enviar outra confirmação</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
     <section id="valores" aria-labelledby="titulo-valores" class="mb-10">
       <div class="bg-white rounded-2xl border border-borderwarm p-5 sm:p-6 shadow-card">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-4 border-b border-borderwarm/70">
@@ -926,6 +1142,156 @@
         });
       });
     });
+
+    // === CONFIRMAÇÃO DE PRESENÇA (RSVP -> Google Sheets via Apps Script) ===
+    (function initRsvp() {
+      const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx8iSIqvlmLDLB9ZPlaVIYKq9ypafNR9gIOBoWpTaGCb_id-vWSzSu3VlWMxc8r6-Cw/exec';
+      const form = document.getElementById('rsvp-form');
+      if (!form) return;
+
+      const nameInput = document.getElementById('rsvp-name');
+      const notesInput = document.getElementById('rsvp-notes');
+      const btnYes = document.getElementById('rsvp-btn-yes');
+      const btnNo = document.getElementById('rsvp-btn-no');
+      const countsWrapper = document.getElementById('rsvp-counts-wrapper');
+      const totalBadge = document.getElementById('rsvp-total-badge');
+      const submitBtn = document.getElementById('rsvp-submit-btn');
+      const submitLabel = document.getElementById('rsvp-submit-label');
+      const errorMsg = document.getElementById('rsvp-error-msg');
+      const successBox = document.getElementById('rsvp-success-box');
+      const successTitle = document.getElementById('rsvp-success-title');
+      const successDetail = document.getElementById('rsvp-success-detail');
+      const newBtn = document.getElementById('rsvp-new-btn');
+
+      const rsvpState = {
+        attending: 'Sim',
+        adults: 1,
+        kidsHalf: 0,
+        kidsFree: 0,
+        submitting: false
+      };
+
+      function updateRsvpCountsUI() {
+        document.getElementById('rsvp-adults').textContent = rsvpState.adults;
+        document.getElementById('rsvp-kidsHalf').textContent = rsvpState.kidsHalf;
+        document.getElementById('rsvp-kidsFree').textContent = rsvpState.kidsFree;
+        const total = rsvpState.adults + rsvpState.kidsHalf + rsvpState.kidsFree;
+        totalBadge.textContent = `Total: ${total} ${total === 1 ? 'pessoa' : 'pessoas'}`;
+      }
+
+      function setAttending(value) {
+        rsvpState.attending = value;
+        const isYes = value === 'Sim';
+
+        btnYes.setAttribute('aria-pressed', String(isYes));
+        btnNo.setAttribute('aria-pressed', String(!isYes));
+
+        if (isYes) {
+          btnYes.className = 'rsvp-attend-btn flex items-center justify-center gap-2 px-4 py-3 rounded-xl border-2 border-gold bg-parchment text-espresso font-semibold text-sm transition-all';
+          btnNo.className = 'rsvp-attend-btn flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-borderwarm bg-white hover:bg-ivory text-taupe font-medium text-sm transition-all';
+          countsWrapper.classList.remove('hidden');
+          if (rsvpState.adults < 1) rsvpState.adults = 1;
+          updateRsvpCountsUI();
+        } else {
+          btnNo.className = 'rsvp-attend-btn flex items-center justify-center gap-2 px-4 py-3 rounded-xl border-2 border-gold bg-parchment text-espresso font-semibold text-sm transition-all';
+          btnYes.className = 'rsvp-attend-btn flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-borderwarm bg-white hover:bg-ivory text-taupe font-medium text-sm transition-all';
+          countsWrapper.classList.add('hidden');
+        }
+      }
+
+      btnYes.addEventListener('click', () => setAttending('Sim'));
+      btnNo.addEventListener('click', () => setAttending('Não'));
+
+      document.querySelectorAll('[data-rsvp-step]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const field = btn.dataset.rsvpStep;
+          const delta = Number(btn.dataset.delta);
+          const minVal = field === 'adults' ? 1 : 0;
+          rsvpState[field] = Math.min(20, Math.max(minVal, rsvpState[field] + delta));
+          updateRsvpCountsUI();
+        });
+      });
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (rsvpState.submitting) return;
+
+        const guestName = nameInput.value.trim();
+        if (!guestName) {
+          errorMsg.textContent = 'Por favor, informe seu nome para confirmar a presença.';
+          errorMsg.classList.remove('hidden');
+          nameInput.focus();
+          return;
+        }
+
+        errorMsg.classList.add('hidden');
+        rsvpState.submitting = true;
+        submitBtn.disabled = true;
+        submitLabel.textContent = 'Enviando confirmação...';
+
+        const isYes = rsvpState.attending === 'Sim';
+        const adults = isYes ? rsvpState.adults : 0;
+        const kidsHalf = isYes ? rsvpState.kidsHalf : 0;
+        const kidsFree = isYes ? rsvpState.kidsFree : 0;
+        const total = adults + kidsHalf + kidsFree;
+
+        const payload = {
+          action: 'rsvp',
+          name: guestName,
+          attending: rsvpState.attending,
+          adults,
+          kidsHalf,
+          kidsFree,
+          total,
+          notes: notesInput.value.trim()
+        };
+
+        try {
+          const res = await fetch(RSVP_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(payload)
+          });
+
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          const data = await res.json();
+          if (!data || !data.ok) throw new Error((data && data.error) || 'Erro ao salvar confirmação.');
+
+          form.classList.add('hidden');
+          successBox.classList.remove('hidden');
+          if (isYes) {
+            successTitle.textContent = 'Presença confirmada!';
+            successDetail.textContent = `Obrigado, ${guestName}! Registramos ${total} ${total === 1 ? 'pessoa' : 'pessoas'} para celebrar o batismo do Arthur no dia 06/12/2026.`;
+          } else {
+            successTitle.textContent = 'Resposta registrada!';
+            successDetail.textContent = `Obrigado por avisar, ${guestName}. Sentiremos sua falta nesse dia especial!`;
+          }
+          if (typeof showToast === 'function') {
+            showToast('Confirmação enviada com sucesso!');
+          }
+        } catch (err) {
+          errorMsg.textContent = 'Não foi possível enviar agora. Verifique sua conexão e tente novamente.';
+          errorMsg.classList.remove('hidden');
+        } finally {
+          rsvpState.submitting = false;
+          submitBtn.disabled = false;
+          submitLabel.textContent = 'Confirmar Presença';
+        }
+      });
+
+      newBtn.addEventListener('click', () => {
+        form.reset();
+        rsvpState.adults = 1;
+        rsvpState.kidsHalf = 0;
+        rsvpState.kidsFree = 0;
+        setAttending('Sim');
+        updateRsvpCountsUI();
+        successBox.classList.add('hidden');
+        form.classList.remove('hidden');
+      });
+
+      updateRsvpCountsUI();
+    })();
   </script>
 </body>
 </html>
